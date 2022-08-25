@@ -23,6 +23,11 @@
             scroll : true
         });
         
+        $('#productNameSearch').autocomplete({
+            source : '${pageContext.request.contextPath }/search',
+            scroll : true
+        });
+        
        
     });
     
@@ -430,7 +435,7 @@
         <form>
   <div class="form-group row">
     <div class="col-sm-12">
-      <input name="addr" class="form-control"  placeholder="Address">
+      <input name="addr" id="productName" class="form-control"  placeholder="Address">
       
     </div>
     
@@ -469,7 +474,7 @@
         <form>
   <div class="form-group row">
     <div class="col-sm-12">
-      <input type="text" id="productName" name="simi" class="form-control"  placeholder="Search">
+      <input type="text" id="productNameSearch" name="simi" class="form-control"  placeholder="Search">
            <c:forEach var="var" items="${sms}">
 		 ${var.addr}<br>
 		</c:forEach>

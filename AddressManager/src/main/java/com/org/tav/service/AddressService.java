@@ -18,9 +18,12 @@ import com.org.tav.repo.AddressRepository;
 public class AddressService {
 	@Autowired
     AddressRepository adrepo;
+	@Autowired
+	ApiService api;
 	
 	public Address saveaddr(Address address)
     {
+		
         return adrepo.save(address);
     }
 	
@@ -40,7 +43,12 @@ public class AddressService {
 		BufferedReader reader=new BufferedReader(new InputStreamReader(istream));
 		while((eachline =reader.readLine())!= null)
 		{
-			fileadd.add(new Address(eachline));
+			 if(api.validation(eachline))
+	    	 {
+				 fileadd.add(new Address(eachline));
+	    		 
+	    	 }
+			
 		}
 		List<Address> ad=new ArrayList<>();
 		for (Address a : fileadd) {

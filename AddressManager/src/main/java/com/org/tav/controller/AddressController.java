@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.org.tav.pojo.Address;
 import com.org.tav.service.AddressService;
+import com.org.tav.service.ApiService;
 
 @Controller
 public class AddressController {
@@ -25,7 +26,8 @@ public class AddressController {
 	
 	@Autowired
 	AddressService adser;
-	
+	@Autowired
+	ApiService api;
 	
 	@RequestMapping("/")
 	public String home()
@@ -35,7 +37,11 @@ public class AddressController {
 	@RequestMapping("/saveaddress")
 	public String saveaddress(Address addr) throws Exception
 	{
-		adser.saveaddr(addr);
+		if(api.validation(addr.getAddr()))
+		{
+			adser.saveaddr(addr);
+		
+		}
 		return("home");
 	}
 	
